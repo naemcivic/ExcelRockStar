@@ -1,0 +1,18 @@
+<h1>List of Users</h1>
+<%= link_to 'Download as .xlsx', users_path(format: :xlsx) %>
+<% @users.each do |user| %>
+  <ul>
+    <h1><%= user.name %></h1>
+    <legend><h3>Passed?</h3></legend>
+    <li>Exam One <%= user.exam1 %></li>
+    <li>Exam Two <%= user.exam2 %></li>
+    <li>Exam Three <%= user.exam3 %></li>
+    <li>Exam Four <%= user.exam4 %></li>
+    <li>Exam Five <%= user.exam5 %></li>
+    <li>Exam Six <%= user.exam6 %></li>
+    <li>Exam Seven <%= user.exam7 %></li>
+    <li>Exam Eight <%= user.exam8 %></li>
+    <li>Exam Nine <%= user.exam9 %></li>
+    <li>Exam Ten <%= user.exam10 %></li>
+  </ul>
+<% end %>

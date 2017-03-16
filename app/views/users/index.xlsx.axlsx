@@ -1,0 +1,22 @@
+wb = xlsx_package.workbook
+diagonal_header_text = wb.styles.add_style(:alignment => { :textRotation => 155 }, :sz => 14)
+bold_text = wb.styles.add_style( :b => true)
+passed = wb.styles.add_style(:bg_color => "008000", :type => :dxf)
+
+
+wb.add_worksheet(name: "Exam Results") do |sheet|
+  col_widths = [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10]
+  sheet.add_row(["Name", "Exam 1", "Exam 2", "Exam 3", "Exam 4", "Exam 5", "Exam 6", "Exam 7", "Exam 8", "Exam 9", "Exam 10"], :style => [diagonal_header_text, diagonal_header_text, diagonal_header_text, diagonal_header_text, diagonal_header_text, diagonal_header_text, diagonal_header_text, diagonal_header_text, diagonal_header_text, diagonal_header_text, diagonal_header_text], :height => 70)
+
+  @users.each do |user|
+    sheet.add_row([user.name, user.exam1, user.exam2, user.exam3, user.exam4, user.exam5, user.exam6, user.exam7, user.exam8, user.exam9, user.exam10], :style => [bold_text, nil, nil, nil, nil, nil, nil, nil ,nil ,nil, nil])
+    sheet.column_widths *col_widths
+
+    sheet.add_conditional_formatting('B2:K31', {
+                                      :type => :cellIs,
+                                      :operator => :equal,
+                                      :formula => "1",
+                                      :dxfId => passed,
+                                      :priority => 1 })
+  end
+end
